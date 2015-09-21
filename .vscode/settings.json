@@ -1,0 +1,24 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+	// Controls if the editor will insert spaces for tabs. Accepted values:  "auto", true, false. If set to "auto", the value will be guessed when a file is opened.
+	"editor.insertSpaces": true,
+
+    // Configure glob patterns for excluding files and folders.
+    "files.exclude": {
+		"**/.git": true,
+		"**/.DS_Store": true,
+        "node_modules/**": true,
+        "obj/**": true,
+        "objd/**": true,
+        "QLogs/**": true,
+        "build.**": true,
+        "buildd.**": true,
+        "QuickBuild.log": true
+	},
+
+    // When enabled, will trim trailing whitespace when you save a file.
+    "files.trimTrailingWhitespace": true
+
+    // Specifies the folder path containing the tsserver and lib*.d.ts files to use. NOT WORKING FOR NOW
+	//  "typescript.tsdk": "node_modules/typescript/lib"
+}
