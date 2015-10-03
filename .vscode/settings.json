@@ -8,12 +8,7 @@
 		"**/.git": true,
 		"**/.DS_Store": true,
         "node_modules/**": true,
-        "obj/**": true,
-        "objd/**": true,
-        "QLogs/**": true,
-        "build.**": true,
-        "buildd.**": true,
-        "QuickBuild.log": true
+        "build/**": true
 	},
 
     // When enabled, will trim trailing whitespace when you save a file.
