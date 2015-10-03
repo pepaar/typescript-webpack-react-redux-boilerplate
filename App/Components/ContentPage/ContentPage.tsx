@@ -3,25 +3,57 @@
 import React = require("react");
 import ContentHeader from "./ContentHeader/ContentHeader";
 import ContentBody from "./ContentBody/ContentBody";
-
+import CommonStore from "../../Stores/CommonStore";
+import CommonActionCreators from "../../ActionCreators/CommonActionCreators";
 require("./ContentPage.less");
 
-export default class ContentPage extends React.Component<{}, {}> {
+interface IContentPageState {
+   bodyTitle: string;
+   bodySummary: string;
+   sayHelloCount: number;
+}
+
+export default class ContentPage extends React.Component<{}, IContentPageState> {
+    private onChange: () => void = () => {
+        this.setState(this.getStateFromStores());
+    };
+
+    constructor() {
+        super();
+        this.state = this.getStateFromStores();
+    }
+
     render(): React.ReactElement<{}> {
         const headerTitle: string = "Welcome to Lorem Ipsum";
-        const bodySummary: string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor" +
-            "incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco" +
-            "laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate" +
-            "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt" +
-            "in culpa qui officia deserunt mollit anim id est laborum.";
-        const bodyTitle: string = "The standard Lorem Ipsum passage, used since the 1500s";
 
         return <div className="contentpage__container">
                    <ContentHeader isActive={true} title={headerTitle} />
-                   <ContentBody title={bodyTitle} summary={bodySummary}>
-                       <div className="contentpage__theend">THE END!</div>
+                   <ContentBody title={this.state.bodyTitle} summary={this.state.bodySummary}>
+                       <div className="contentpage__hello" >
+                           <button onClick={() => this.onButtonClick()}>Say Hello!</button>
+                           <span> You said hello {this.state.sayHelloCount} time(s)</span>
+                       </div>
                    </ContentBody>
                </div>;
+    }
 
+    componentDidMount(): void {
+        CommonStore.addListener(this.onChange);
+    }
+
+    componentWillUnmount(): void {
+        CommonStore.removeListener(this.onChange);
+    }
+
+    private onButtonClick(): void {
+        CommonActionCreators.sayHello();
+    }
+
+    private getStateFromStores(): IContentPageState {
+        return {
+            bodyTitle: CommonStore.getBodyTitle(),
+            bodySummary: CommonStore.getBodySummary(),
+            sayHelloCount: CommonStore.getSayHelloCount()
+        };
     }
 }

@@ -7,7 +7,7 @@ import ActionLogEntry from "./ActionLogEntry";
 /**
  * Logger that logs all actions
  */
-export default class ActionLogger {
+class ActionLogger {
     public constructor() {
         Dispatcher.register(this.processActions);
     }
@@ -25,3 +25,5 @@ export default class ActionLogger {
         }
     }
 }
+
+export default new ActionLogger();

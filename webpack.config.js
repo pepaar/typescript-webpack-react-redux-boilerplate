@@ -14,7 +14,6 @@ var config = {
   entry: {
     vendors: [
       'flux',
-      'es6-promise',
       'react/addons'
     ],
     app: [
@@ -31,8 +30,7 @@ var config = {
     extensions: ['', '.tsx', '.ts', '.js', '.less', '.css'],
     alias: {
       'react/addons': path.join(nodeModulesPath, 'react', 'addons.js'),
-      'flux': path.join(nodeModulesPath, 'flux', 'index.js'),
-      'es6-promise': path.join(nodeModulesPath, 'es6-promise', 'dist', 'es6-promise.js')
+      'flux': path.join(nodeModulesPath, 'flux', 'index.js')
     }
   },
 
@@ -47,7 +45,7 @@ var config = {
     ],
     noParse: [],
     loaders: [
-      { test: /\.ts(x?)$/, loader: 'ts-loader?instance=jsx&compiler=typescript', include: path.resolve(__dirname, "App") },
+      { test: /\.ts(x?)$/, loader: 'ts-loader?instance=jsx', include: path.resolve(__dirname, "App") },
       { test: /\.css$/,  loader: ExtractTextPlugin.extract("style-loader", "css-loader?minimize"), include: path.resolve(__dirname, "App") },
       { test: /\.less$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?minimize!less-loader?compress"), include: path.resolve(__dirname, "App") },
       { test: /\.(jpg|png|woff|eot|ttf|svg|gif)$/, loader: "file-loader?name=[name]_[hash].[ext]", include: path.resolve(__dirname, "App") }

@@ -35,7 +35,7 @@ var devConfigExtension = {
 
   module: {
     loaders: [
-      { test: /\.ts(x?)$/, loaders: ['react-hot', 'ts-loader?instance=jsx&compiler=typescript'], include: path.resolve(__dirname, "App") },
+      { test: /\.ts(x?)$/, loaders: ['react-hot', 'ts-loader?instance=jsx'], include: path.resolve(__dirname, "App") },
       { test: /\.css$/,  loader: "style!css", include: path.resolve(__dirname, "App") },
       { test: /\.less$/, loader: "style!css!less", include: path.resolve(__dirname, "App") },
       { test: /\.(jpg|png|jpg|png|woff|eot|ttf|svg|gif)$/, loader: "file-loader?name=[name].[ext]" }

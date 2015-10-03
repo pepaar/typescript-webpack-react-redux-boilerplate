@@ -1,7 +1,6 @@
 /// <reference path="../../../../typings/tsd.d.ts" />
 
 import React = require("react");
-
 require("./ContentBody.less");
 
 interface IContentBodyProps extends React.Props<ContentBody> {

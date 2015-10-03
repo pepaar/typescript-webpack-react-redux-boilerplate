@@ -16,10 +16,10 @@ var config = {
     alias: aliases
   },
   resolveLoader: mainConfig.resolveLoader,
-  devtool: 'inline-source-map',
+  devtool: 'eval-source-map',
   module: {
     loaders: [
-      { test: /\.ts(x?)$/, loader: 'ts-loader?instance=jsx&compiler=typescript' },
+      { test: /\.ts(x?)$/, loader: 'ts-loader?instance=jsx' },
       { test: /\.less$/, loader: 'null-loader' }
     ]
   }

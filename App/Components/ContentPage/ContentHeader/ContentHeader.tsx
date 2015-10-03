@@ -1,7 +1,6 @@
 /// <reference path="../../../../typings/tsd.d.ts" />
 
 import React = require("react");
-
 require("./ContentHeader.less");
 
 interface IContentHeaderProps {
