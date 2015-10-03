@@ -13,12 +13,13 @@ var config = {
   // entry points - each will produce one bundled js file and one css file if there is any css in dependency tree
   entry: {
     vendors: [
-      'react',
       'flux',
       'es6-promise',
       'react/addons'
     ],
-    app: path.join(__dirname, 'App', 'Index.tsx')
+    app: [
+      path.join(__dirname, 'App', 'Index.tsx')
+    ]
   },
 
   // This is path to loaders
@@ -30,7 +31,6 @@ var config = {
     extensions: ['', '.tsx', '.ts', '.js', '.less', '.css'],
     alias: {
       'react/addons': path.join(nodeModulesPath, 'react', 'addons.js'),
-      'react': path.join(nodeModulesPath, 'react', 'react.js'),
       'flux': path.join(nodeModulesPath, 'flux', 'index.js'),
       'es6-promise': path.join(nodeModulesPath, 'es6-promise', 'dist', 'es6-promise.js')
     }

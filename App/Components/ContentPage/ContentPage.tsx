@@ -4,6 +4,6 @@ import React = require("react");
 
 export default class App extends React.Component<{}, {}> {
     render(): React.ReactElement<{}> {
-        return  <div>Conent!</div>;
+        return  <div>Conent2!</div>;
     }
 };
