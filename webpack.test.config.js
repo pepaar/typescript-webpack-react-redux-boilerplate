@@ -16,7 +16,7 @@ var config = {
     alias: aliases
   },
   resolveLoader: mainConfig.resolveLoader,
-  devtool: 'eval-source-map',
+  devtool: 'inline-source-map',
   module: {
     loaders: [
       { test: /\.ts(x?)$/, loader: 'ts-loader?instance=jsx' },
