@@ -14,6 +14,6 @@
     // When enabled, will trim trailing whitespace when you save a file.
     "files.trimTrailingWhitespace": true
 
-    // Specifies the folder path containing the tsserver and lib*.d.ts files to use. NOT WORKING FOR NOW
-	//  "typescript.tsdk": "node_modules/typescript/lib"
+    // Specifies the folder path containing the tsserver and lib*.d.ts files to use. NOT WORKING FOR NOW, check README for workaround
+	// "typescript.tsdk": "node_modules/typescript/lib"
 }

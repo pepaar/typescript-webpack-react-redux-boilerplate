@@ -40,7 +40,7 @@
     "style-loader": "^0.12.4",
     "ts-loader": "^0.5.5",
     "tslint-loader": "^1.0.2",
-    "typescript": "1.6.0-beta",
+    "typescript": "^1.6.2",
     "webpack": "^1.12.2",
     "webpack-config": "^0.8.0",
     "webpack-dev-server": "^1.12.0"
