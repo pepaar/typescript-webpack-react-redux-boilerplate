@@ -48,5 +48,5 @@ server.listen(3333, 'localhost', function (err) {
     return;
   }
 
-  console.log("Listening at http://localhost:3333. Please wait, I'm buiding things for you...");
+  console.log("Listening at http://localhost:3333. Please wait, I'm building things for you...");
 });

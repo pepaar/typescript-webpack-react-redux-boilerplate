@@ -2,10 +2,10 @@
 
 var webpackShared = require("./webpack.shared");
 var webpack = require('webpack');
-var webpackConfig = require('webpack-config');
+var WebpackConfig = require('webpack-config');
 var path = require("path");
 
-var mainConfig = webpackConfig.fromFile("webpack.config");
+var mainConfig = new WebpackConfig().extend("webpack.config");
 
 // To work with webpack-dev-server
 webpackShared.removeObjectProperties(mainConfig.resolve.alias, ['react/addons']);
@@ -53,4 +53,4 @@ mainConfig.module.loaders = [];
 mainConfig.resolve.alias = {};
 mainConfig.plugins = [];
 
-module.exports = mainConfig.extend(devConfigExtension);
+module.exports = mainConfig.merge(devConfigExtension);

@@ -1,9 +1,9 @@
 /// <reference path="typings/node/node.d.ts"/>
 
 var path = require("path");
-var webpackConfig = require("webpack-config");
+var WebpackConfig = require("webpack-config");
 
-var mainConfig = webpackConfig.fromFile("webpack.config");
+var mainConfig = new WebpackConfig().extend("webpack.config");
 
 var aliases = {};
 for (var key in mainConfig.resolve.alias) {
@@ -25,4 +25,4 @@ var config = {
   }
 }
 
-module.exports = webpackConfig.fromObject(config);
+module.exports = config;

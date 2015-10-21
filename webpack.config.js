@@ -3,7 +3,6 @@
 var path = require("path");
 var webpackShared = require("./webpack.shared");
 var webpack = require('webpack');
-var webpackConfig = require('webpack-config');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var nodeModulesPath = path.join(__dirname, 'node_modules');
@@ -75,4 +74,4 @@ if (webpackShared.isProduction) {
   }));
 }
 
-module.exports = webpackConfig.fromObject(config);
+module.exports = config;

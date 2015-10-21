@@ -1,7 +1,7 @@
 /// <reference path="typings/node/node.d.ts"/>
 
 var path = require("path");
-var webpackConfig = require('webpack-config');
+var WebpackConfig = require('webpack-config');
 
 // Karma configuration here
 module.exports = function (config) {
@@ -19,6 +19,6 @@ module.exports = function (config) {
       'karma.tests.js': ['webpack', 'sourcemap'] //preprocess with webpack and sourcemap loader
     },
     reporters: ['progress'], //report results in this format
-    webpack: webpackConfig.fromFile("webpack.test.config")
+    webpack: new WebpackConfig().extend("webpack.test.config")
   });
 };
