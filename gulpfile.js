@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var tslint = require('gulp-tslint');
-var webpack = require('gulp-webpack');
+var webpack = require('webpack-stream');
 
 gulp.task('default', ['watch-tslint']);
 
