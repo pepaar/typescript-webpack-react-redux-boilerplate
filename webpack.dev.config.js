@@ -8,7 +8,7 @@ var path = require("path");
 var mainConfig = new WebpackConfig().extend("webpack.config");
 
 // To work with webpack-dev-server
-webpackShared.removeObjectProperties(mainConfig.resolve.alias, ['react/addons']);
+webpackShared.removeObjectProperties(mainConfig.resolve.alias, ['react']);
 
 var devConfigExtension = {
   entry: {
