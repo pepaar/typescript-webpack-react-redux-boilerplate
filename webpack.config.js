@@ -13,7 +13,8 @@ var config = {
   entry: {
     vendors: [
       'flux',
-      'react/addons'
+      'react',
+      'react-dom'
     ],
     app: [
       path.join(__dirname, 'App', 'Index.tsx')
@@ -28,7 +29,8 @@ var config = {
   resolve: {
     extensions: ['', '.tsx', '.ts', '.js', '.less', '.css'],
     alias: {
-      'react/addons': path.join(nodeModulesPath, 'react', 'addons.js'),
+      'react': path.join(nodeModulesPath, 'react', 'react.js'),
+      'react-dom': path.join(nodeModulesPath, 'react-dom', 'index.js'),
       'flux': path.join(nodeModulesPath, 'flux', 'index.js')
     }
   },

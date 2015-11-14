@@ -1,7 +1,7 @@
 /// <reference path="../../../../typings/jasmine/jasmine.d.ts" />
 
-import React = require("react/addons");
-import TestUtils = React.addons.TestUtils;
+import React = require("react");
+import TestUtils = require("react-addons-test-utils");
 import ContentPage from "./../ContentPage";
 import CommonStore from "./../../../Stores/CommonStore";
 import CommonActionCreators from "./../../../ActionCreators/CommonActionCreators";
@@ -16,7 +16,7 @@ describe("ContentPage tests", () => {
                 <ContentPage />
             );
 
-            const dom: Element = TestUtils.findRenderedDOMComponentWithClass(component, "contentpage__body--summary").getDOMNode();
+            const dom: Element = TestUtils.findRenderedDOMComponentWithClass(component, "contentpage__body--summary");
             const summaryText: string = dom.textContent;
 
             expect(summaryText).toBe(CommonStore.getBodySummary());

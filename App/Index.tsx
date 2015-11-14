@@ -1,6 +1,9 @@
 /// <reference path="../typings/tsd.d.ts" />
 
+/* tslint:disable */
 import React = require("react");
+/* tslint:enable */
+import ReactDom = require("react-dom");
 import App from "./App";
 
-React.render(<App />, document.getElementById("root"));
+ReactDom.render(<App />, document.getElementById("root"));

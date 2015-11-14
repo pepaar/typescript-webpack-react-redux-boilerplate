@@ -2,18 +2,16 @@
 
 var path = require("path");
 var WebpackConfig = require("webpack-config");
+var webpackShared = require("./webpack.shared");
 
 var mainConfig = new WebpackConfig().extend("webpack.config");
 
-var aliases = {};
-for (var key in mainConfig.resolve.alias) {
-  aliases[key] = mainConfig.resolve.alias[key];
-}
+webpackShared.removeObjectProperties(mainConfig.resolve.alias, ['react']);
 
 var config = {
   resolve: {
     extensions: mainConfig.resolve.extensions,
-    alias: aliases
+    alias: mainConfig.resolve.alias
   },
   resolveLoader: mainConfig.resolveLoader,
   devtool: 'inline-source-map',
