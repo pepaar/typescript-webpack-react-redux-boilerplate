@@ -1,11 +1,12 @@
 # typescript-webpack-react-flux-boilerplate
 This boilerplate combines:
-* Typescript
-* React
-* Flux
-* Webpack
-* Jasmine
-* Karma
+* [Typescript](https://github.com/Microsoft/TypeScript)
+* [React](https://github.com/facebook/react)
+* [Flux](https://github.com/facebook/flux)
+* [Webpack](https://github.com/webpack/webpack)
+* [Jasmine](https://github.com/jasmine/jasmine)
+* [Karma](https://github.com/karma-runner/karma)
+* [CSS modules](https://github.com/css-modules/css-modules)
 
 ## Getting started
 * run **npm start** to build and start webpack-dev-server
@@ -23,15 +24,6 @@ This boilerplate combines:
 * **npm run test-browser-debug** - to run repeated unit tests after every file change in Chrome with debug option
     * After browser is opened click on "DEBUG" button in top right corner
     * Hit F12 to debug
-
-## Tips & Tricks
-###How to enable intellisense in TSX files (VS Code)
-For version >= 0.8.0:
-* Replace tsserver.js in "Program Files (x86)\Microsoft VS Code\resources\app\plugins\vs.language.typescript\out\lib" with a version from node_modules\typescript\lib
-
-For version < 0.8.0:
-* Replace tsserver.js in C:\Users\\{YOURNAME}\AppData\Local\Code\app-{LATEST_VERSION}\resources\app\plugins\vs.language.typescript\lib with a version from node_modules\typescript\lib
-
 
 ###Visual Studio Code integration
 ####Show tslint errors only in VS Code

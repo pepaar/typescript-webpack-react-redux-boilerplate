@@ -28,9 +28,10 @@ var config = {
 
   resolve: {
     extensions: ['', '.tsx', '.ts', '.js', '.less', '.css'],
+    modulesDirectories: ["node_modules", "resources"],
     alias: {
       'react': path.join(nodeModulesPath, 'react', 'react.js'),
-      'react-dom': path.join(nodeModulesPath, 'react-dom', 'index.js'),
+      'react-dom': path.join(nodeModulesPath, 'react-dom', 'dist', 'react-dom.js'),
       'flux': path.join(nodeModulesPath, 'flux', 'index.js')
     }
   },
@@ -48,14 +49,17 @@ var config = {
     loaders: [
       { test: /\.ts(x?)$/, loader: 'ts-loader?instance=jsx', include: path.resolve(__dirname, "App") },
       { test: /\.css$/,  loader: ExtractTextPlugin.extract("style-loader", "css-loader?minimize"), include: path.resolve(__dirname, "App") },
-      { test: /\.less$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?minimize!less-loader?compress"), include: path.resolve(__dirname, "App") },
+      { test: /\.less$/, exclude: /\.module\.less$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?minimize!less-loader?compress"), include: path.resolve(__dirname, "App") },
+      { test: /\.module\.less$/,
+        loader: ExtractTextPlugin.extract("style-loader","css-loader?minimize&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!less-loader?-compress"),
+        include: path.resolve(__dirname, "App") },
       { test: /\.(jpg|png|woff|eot|ttf|svg|gif)$/, loader: "file-loader?name=[name]_[hash].[ext]", include: path.resolve(__dirname, "App") }
     ]
   },
 
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors_[chunkhash].js'),
-    new ExtractTextPlugin('[name].css', {allChunks: true})
+    new ExtractTextPlugin('[name].css', { allChunks: true })
   ],
 
   tslint: {

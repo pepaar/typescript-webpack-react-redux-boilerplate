@@ -3,6 +3,7 @@
 import React = require("react");
 import TestUtils = require("react-addons-test-utils");
 import ContentPage from "./../ContentPage";
+import ContentBody from "./../ContentBody/ContentBody";
 import CommonStore from "./../../../Stores/CommonStore";
 import CommonActionCreators from "./../../../ActionCreators/CommonActionCreators";
 
@@ -16,9 +17,14 @@ describe("ContentPage tests", () => {
                 <ContentPage />
             );
 
-            const dom: Element = TestUtils.findRenderedDOMComponentWithClass(component, "contentpage__body--summary");
-            const summaryText: string = dom.textContent;
+            const body: ContentBody = component.refs["contentBodyRef"] as ContentBody;
+            expect(body).toBeDefined();
+            expect(body.props.summary.length).toBeGreaterThan(0);
 
+            const summaryElement: Element = body.refs["summaryRef"] as Element;
+            expect(summaryElement).toBeDefined();
+
+            const summaryText: string = summaryElement.textContent;
             expect(summaryText).toBe(CommonStore.getBodySummary());
         });
     });

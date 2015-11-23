@@ -5,7 +5,10 @@ import ContentHeader from "./ContentHeader/ContentHeader";
 import ContentBody from "./ContentBody/ContentBody";
 import CommonStore from "../../Stores/CommonStore";
 import CommonActionCreators from "../../ActionCreators/CommonActionCreators";
-require("./ContentPage.less");
+
+/* tslint:disable:no-any */
+const styles: any = require("./ContentPage.module.less");
+/* tslint:enable:no-any */
 
 interface IContentPageState {
    bodyTitle: string;
@@ -26,10 +29,10 @@ export default class ContentPage extends React.Component<{}, IContentPageState> 
     render(): React.ReactElement<{}> {
         const headerTitle: string = "Welcome to Lorem Ipsum";
 
-        return <div className="contentpage__container">
+        return <div className={styles.container}>
                    <ContentHeader isActive={true} title={headerTitle} />
-                   <ContentBody title={this.state.bodyTitle} summary={this.state.bodySummary}>
-                       <div className="contentpage__hello" >
+                   <ContentBody ref="contentBodyRef" title={this.state.bodyTitle} summary={this.state.bodySummary}>
+                       <div className={styles.hello}>
                            <button onClick={() => this.onButtonClick()}>Say Hello!</button>
                            <span> You said hello {this.state.sayHelloCount} time(s)</span>
                        </div>
