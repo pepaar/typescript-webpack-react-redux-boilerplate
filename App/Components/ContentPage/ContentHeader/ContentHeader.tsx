@@ -1,7 +1,10 @@
 /// <reference path="../../../../typings/tsd.d.ts" />
 
 import React = require("react");
-require("./ContentHeader.less");
+
+/* tslint:disable:no-any */
+const styles: any = require("./ContentHeader.module.less");
+/* tslint:enable:no-any */
 
 interface IContentHeaderProps {
     isActive: boolean;
@@ -14,6 +17,6 @@ export default class ContentHeader extends React.Component<IContentHeaderProps, 
             return null;
         }
 
-        return  <div className="contentpage__header">{this.props.title}</div>;
+        return  <div className={styles.container}>{this.props.title}</div>;
     }
 };
