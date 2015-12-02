@@ -45,6 +45,7 @@ var devConfigExtension = {
   },
 
    plugins: [
+    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
     // Used for hot-reload
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
