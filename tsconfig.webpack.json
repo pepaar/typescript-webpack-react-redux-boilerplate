@@ -3,5 +3,7 @@
         "target": "es6",
         "sourceMap": true,
         "jsx": "react"
-    }
+    },
+    "files": [
+    ]
 }

@@ -14,7 +14,10 @@ var config = {
     vendors: [
       'flux',
       'react',
-      'react-dom'
+      'react-dom',
+      'babel-polyfill',
+       path.join(__dirname, 'babel', 'babelhelpers.js'),
+       path.join(__dirname, 'babel', 'babelOldIE.js'),
     ],
     app: [
       path.join(__dirname, 'App', 'Index.tsx')
@@ -32,7 +35,8 @@ var config = {
     alias: {
       'react': path.join(nodeModulesPath, 'react', 'react.js'),
       'react-dom': path.join(nodeModulesPath, 'react-dom', 'dist', 'react-dom.js'),
-      'flux': path.join(nodeModulesPath, 'flux', 'index.js')
+      'flux': path.join(nodeModulesPath, 'flux', 'index.js'),
+      'babel-polyfill': path.join(nodeModulesPath, 'babel-polyfill', 'lib', 'index.js'),
     }
   },
 
@@ -47,7 +51,14 @@ var config = {
     ],
     noParse: [],
     loaders: [
-      { test: /\.ts(x?)$/, loader: 'ts-loader?instance=jsx', include: path.resolve(__dirname, "App") },
+      // TODO remove crazy require when https://github.com/babel/babel-loader/issues/166 is fixed.
+      {
+        test: /\.ts(x?)$/,
+        loader: 'babel?cacheDirectory,plugins[]=' + require.resolve(path.join(nodeModulesPath, 'babel-plugin-external-helpers-2')) +
+                ',presets[]=' + require.resolve(path.join(nodeModulesPath, 'babel-preset-es2015-loose')) +
+                '!ts-loader?configFileName=tsconfig.webpack.json',
+        include: path.resolve(__dirname, "App")
+      },
       { test: /\.css$/,  loader: ExtractTextPlugin.extract("style-loader", "css-loader?minimize"), include: path.resolve(__dirname, "App") },
       { test: /\.less$/, exclude: /\.module\.less$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?minimize!less-loader?compress"), include: path.resolve(__dirname, "App") },
       { test: /\.module\.less$/,

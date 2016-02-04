@@ -1,6 +1,6 @@
 /// <reference path="../../../../typings/tsd.d.ts" />
 
-import React = require("react");
+import * as React from "react";
 
 /* tslint:disable:no-any */
 const styles: any = require("./ContentHeader.module.less");
