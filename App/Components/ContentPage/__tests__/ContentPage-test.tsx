@@ -1,7 +1,7 @@
 /// <reference path="../../../../typings/jasmine/jasmine.d.ts" />
 
-import React = require("react");
-import TestUtils = require("react-addons-test-utils");
+import * as React from "react";
+import * as TestUtils  from "react-addons-test-utils";
 import ContentPage from "./../ContentPage";
 import ContentBody from "./../ContentBody/ContentBody";
 import CommonStore from "./../../../Stores/CommonStore";
