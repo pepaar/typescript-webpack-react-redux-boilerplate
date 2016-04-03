@@ -3,7 +3,6 @@
 var path = require("path");
 var webpackShared = require("./webpack.shared");
 var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var nodeModulesPath = path.join(__dirname, 'node_modules');
 
@@ -47,30 +46,29 @@ var config = {
 
   module: {
     preLoaders: [
-      { test: /\.ts(x?)$/, loader: "tslint", include: path.resolve(__dirname, "App") },
+      { test: /\.tsx?$/, loader: "tslint", include: path.resolve(__dirname, "App") },
     ],
     noParse: [],
     loaders: [
       // TODO remove crazy require when https://github.com/babel/babel-loader/issues/166 is fixed.
       {
-        test: /\.ts(x?)$/,
+        test: /\.tsx?$/,
         loader: 'babel?cacheDirectory,plugins[]=' + require.resolve(path.join(nodeModulesPath, 'babel-plugin-external-helpers-2')) +
                 ',presets[]=' + require.resolve(path.join(nodeModulesPath, 'babel-preset-es2015-loose')) +
                 '!ts-loader?configFileName=tsconfig.webpack.json',
         include: path.resolve(__dirname, "App")
       },
-      { test: /\.css$/,  loader: ExtractTextPlugin.extract("style-loader", "css-loader?minimize"), include: path.resolve(__dirname, "App") },
-      { test: /\.less$/, exclude: /\.module\.less$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?minimize!less-loader?compress"), include: path.resolve(__dirname, "App") },
+      { test: /\.css$/,  loader: "style-loader!css-loader?minimize", include: path.resolve(__dirname, "App") },
+      { test: /\.less$/, exclude: /\.module\.less$/, loader: "style-loader!css-loader?minimize!less-loader?compress", include: path.resolve(__dirname, "App") },
       { test: /\.module\.less$/,
-        loader: ExtractTextPlugin.extract("style-loader","css-loader?minimize&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!less-loader?-compress"),
+        loader: "style-loader!css-loader?minimize&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!less-loader?-compress",
         include: path.resolve(__dirname, "App") },
       { test: /\.(jpg|png|woff|eot|ttf|svg|gif)$/, loader: "file-loader?name=[name]_[hash].[ext]", include: path.resolve(__dirname, "App") }
     ]
   },
 
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors_[chunkhash].js'),
-    new ExtractTextPlugin('[name].css', { allChunks: true })
+    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors_[chunkhash].js')
   ],
 
   tslint: {

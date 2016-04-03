@@ -17,10 +17,6 @@ interface IContentPageState {
 }
 
 export default class ContentPage extends React.Component<{}, IContentPageState> {
-    private onChange: () => void = () => {
-        this.setState(this.getStateFromStores());
-    };
-
     constructor() {
         super();
         this.state = this.getStateFromStores();
@@ -47,6 +43,10 @@ export default class ContentPage extends React.Component<{}, IContentPageState> 
     componentWillUnmount(): void {
         CommonStore.removeListener(this.onChange);
     }
+
+    private onChange: () => void = () => {
+        this.setState(this.getStateFromStores());
+    };
 
     private onButtonClick(): void {
         CommonActionCreators.sayHello();

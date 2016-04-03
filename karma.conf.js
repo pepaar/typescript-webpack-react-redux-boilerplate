@@ -12,7 +12,6 @@ module.exports = function (config) {
     singleRun: true, //just run once by default
     frameworks: ['jasmine'], //use jasmine as framework
     files: [
-      path.join(__dirname, 'node_modules', 'phantomjs-polyfill', 'bind-polyfill.js'), // To enable PhantomJS to render React components
       'karma.tests.js' //test files
     ],
     preprocessors: {
