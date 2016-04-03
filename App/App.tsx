@@ -4,6 +4,7 @@ import * as React from "react";
 import ContentPage from "./Components/ContentPage/ContentPage";
 import CommonActionCreators from "./ActionCreators/CommonActionCreators";
 require("./Log/ActionLogger");
+require("./Global/Styles/global.less");
 
 export default class App extends React.Component<{}, {}> {
     render(): React.ReactElement<{}> {
