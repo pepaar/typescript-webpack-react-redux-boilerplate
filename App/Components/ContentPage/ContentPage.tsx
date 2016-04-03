@@ -1,10 +1,9 @@
-/// <reference path="../../../typings/tsd.d.ts" />
-
 import * as React from "react";
 import ContentHeader from "./ContentHeader/ContentHeader";
 import ContentBody from "./ContentBody/ContentBody";
 import CommonStore from "../../Stores/CommonStore";
-import CommonActionCreators from "../../ActionCreators/CommonActionCreators";
+import  * as CommonActionCreators from "../../ActionCreators/CommonActionCreators";
+import SmartComponent from "./../SmartComponent";
 
 /* tslint:disable:no-any */
 const styles: any = require("./ContentPage.module.less");
@@ -16,13 +15,12 @@ interface IContentPageState {
    sayHelloCount: number;
 }
 
-export default class ContentPage extends React.Component<{}, IContentPageState> {
+export default class ContentPage extends SmartComponent<{}, IContentPageState> {
     constructor() {
-        super();
-        this.state = this.getStateFromStores();
+        super(CommonStore);
     }
 
-    render(): React.ReactElement<{}> {
+    doRender(): React.ReactElement<{}> {
         const headerTitle: string = "Welcome to Lorem Ipsum";
 
         return <div className={styles.container}>
@@ -36,27 +34,15 @@ export default class ContentPage extends React.Component<{}, IContentPageState> 
                </div>;
     }
 
-    componentDidMount(): void {
-        CommonStore.addListener(this.onChange);
-    }
-
-    componentWillUnmount(): void {
-        CommonStore.removeListener(this.onChange);
-    }
-
-    private onChange: () => void = () => {
-        this.setState(this.getStateFromStores());
-    };
-
-    private onButtonClick(): void {
-        CommonActionCreators.sayHello();
-    }
-
-    private getStateFromStores(): IContentPageState {
+    protected getState(): IContentPageState {
         return {
             bodyTitle: CommonStore.getBodyTitle(),
             bodySummary: CommonStore.getBodySummary(),
             sayHelloCount: CommonStore.getSayHelloCount()
         };
+    }
+
+    private onButtonClick(): void {
+        CommonActionCreators.sayHello();
     }
 }

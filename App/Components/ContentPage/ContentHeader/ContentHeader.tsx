@@ -1,6 +1,5 @@
-/// <reference path="../../../../typings/tsd.d.ts" />
-
 import * as React from "react";
+import BaseComponent from "./../../BaseComponent";
 
 /* tslint:disable:no-any */
 const styles: any = require("./ContentHeader.module.less");
@@ -11,8 +10,8 @@ interface IContentHeaderProps {
     title: string;
 };
 
-export default class ContentHeader extends React.Component<IContentHeaderProps, {}> {
-    render(): React.ReactElement<{}> {
+export default class ContentHeader extends BaseComponent<IContentHeaderProps, {}> {
+    doRender(): React.ReactElement<{}> {
         if (!this.props.isActive) {
             return null;
         }

@@ -1,8 +1,6 @@
-/// <reference path="../typings/tsd.d.ts" />
-
 import * as React from "react";
 import ContentPage from "./Components/ContentPage/ContentPage";
-import CommonActionCreators from "./ActionCreators/CommonActionCreators";
+import * as CommonActionCreators from "./ActionCreators/CommonActionCreators";
 require("./Log/ActionLogger");
 require("./Global/Styles/global.less");
 

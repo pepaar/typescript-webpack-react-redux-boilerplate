@@ -1,6 +1,4 @@
-/// <reference path="../../typings/tsd.d.ts" />
-
-export default class BaseStore {
+abstract class BaseStore {
 
     private listeners: Array<() => void> = null;
 
@@ -16,6 +14,9 @@ export default class BaseStore {
         var index: number = this.listeners.indexOf(listener);
         if (index > -1) {
             this.listeners.splice(index, 1);
+        } else {
+            // We should never be trying to remove a listener we have not registered
+            console.error("BaseStore: Trying to remove a listener that was never added. This indicates a bug in a component.");
         }
     }
 
@@ -25,3 +26,5 @@ export default class BaseStore {
         }
     }
 }
+
+export default BaseStore;
