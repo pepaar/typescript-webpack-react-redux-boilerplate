@@ -16,7 +16,7 @@ This boilerplate combines:
 * open **http://localhost:3333/**
 
 ## Build options
-* **npm run build** for single build
+* **npm run build** for single build (creates files in build/ folder)
 * **npm run watch** for incremental builds on every file change
 * **npm start** to build and start webpack-dev-server
 

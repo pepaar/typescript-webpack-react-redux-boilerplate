@@ -1,3 +1,4 @@
+/// <reference path="../../../../typings/tsd.d.ts" />
 /// <reference path="../../../../typings/jasmine/jasmine.d.ts" />
 
 import * as React from "react";
