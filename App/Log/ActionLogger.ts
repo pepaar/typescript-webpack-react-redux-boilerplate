@@ -1,5 +1,3 @@
-/// <reference path="../../typings/tsd.d.ts" />
-
 import IAction from "../Actions/IAction";
 import Dispatcher from "../Dispatcher/Dispatcher";
 import ActionLogEntry from "./ActionLogEntry";

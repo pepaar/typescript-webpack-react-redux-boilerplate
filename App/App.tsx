@@ -1,12 +1,12 @@
-/// <reference path="../typings/tsd.d.ts" />
-
 import * as React from "react";
 import ContentPage from "./Components/ContentPage/ContentPage";
-import CommonActionCreators from "./ActionCreators/CommonActionCreators";
+import * as CommonActionCreators from "./ActionCreators/CommonActionCreators";
+import BaseComponent from "./Components/BaseComponent";
 require("./Log/ActionLogger");
+require("./Global/Styles/global.less");
 
-export default class App extends React.Component<{}, {}> {
-    render(): React.ReactElement<{}> {
+export default class App extends BaseComponent<{}, {}> {
+    doRender(): React.ReactElement<{}> {
         return  <div>
                     <ContentPage />
                 </div>;

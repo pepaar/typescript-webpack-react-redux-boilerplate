@@ -35,7 +35,7 @@ var devConfigExtension = {
 
   module: {
     loaders: [
-      { test: /\.ts(x?)$/, loaders: ['react-hot', 'babel?presets[]=es2015-loose', 'ts-loader?configFileName=tsconfig.webpack.json'], include: path.resolve(__dirname, "App") },
+      { test: /\.tsx?$/, loaders: ['react-hot', 'babel?presets[]=es2015-loose', 'ts-loader?configFileName=tsconfig.webpack.json'], include: path.resolve(__dirname, "App") },
       { test: /\.css$/, exclude: /\.import\.css$/,  loader: "style!css", include: path.resolve(__dirname, "App") },
       { test: /\.import\.css$/,  loader: "style!css", include: path.resolve(__dirname, "App") },
       { test: /\.less$/, exclude: /\.module\.less$/, loader: "style!css!less", include: path.resolve(__dirname, "App") },

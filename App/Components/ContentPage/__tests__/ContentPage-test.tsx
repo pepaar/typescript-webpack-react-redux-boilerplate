@@ -1,3 +1,4 @@
+/// <reference path="../../../../typings/tsd.d.ts" />
 /// <reference path="../../../../typings/jasmine/jasmine.d.ts" />
 
 import * as React from "react";
@@ -5,7 +6,7 @@ import * as TestUtils  from "react-addons-test-utils";
 import ContentPage from "./../ContentPage";
 import ContentBody from "./../ContentBody/ContentBody";
 import CommonStore from "./../../../Stores/CommonStore";
-import CommonActionCreators from "./../../../ActionCreators/CommonActionCreators";
+import * as CommonActionCreators from "./../../../ActionCreators/CommonActionCreators";
 
 // Check here what's avaiable in TestUtils: https://facebook.github.io/react/docs/test-utils.html
 describe("ContentPage tests", () => {

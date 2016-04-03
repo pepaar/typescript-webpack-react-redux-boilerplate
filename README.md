@@ -11,11 +11,12 @@ This boilerplate combines:
 * [Karma](https://github.com/karma-runner/karma)
 
 ## Getting started
+* run **npm install** to download dependencies
 * run **npm start** to build and start webpack-dev-server
 * open **http://localhost:3333/**
 
 ## Build options
-* **npm run build** for single build
+* **npm run build** for single build (creates files in build/ folder)
 * **npm run watch** for incremental builds on every file change
 * **npm start** to build and start webpack-dev-server
 
@@ -26,16 +27,3 @@ This boilerplate combines:
 * **npm run test-browser-debug** - to run repeated unit tests after every file change in Chrome with debug option
     * After browser is opened click on "DEBUG" button in top right corner
     * Hit F12 to debug
-
-###Visual Studio Code integration
-####Show tslint errors only in VS Code
-* Hit Ctrl + P
-* Run "task tslint-watch"
-
-####Show webpack errors in VS Code
-* Hit Ctrl + P
-* Run "task webpack-watch"
-
-####Kill running task
-* Hit Ctrl + shift + P
-* Run "Tasks: Terminate Running Task"
