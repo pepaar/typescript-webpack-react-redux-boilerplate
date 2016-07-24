@@ -27,8 +27,8 @@ export default class ContentPage extends SmartComponent<{}, IContentPageState> {
                    <ContentHeader isActive={true} title={headerTitle} />
                    <ContentBody ref="contentBodyRef" title={this.state.bodyTitle} summary={this.state.bodySummary}>
                        <div className={styles.hello}>
-                           <button onClick={() => this.onButtonClick()}>Say Hello!</button>
-                           <span> You said hello {this.state.sayHelloCount} time(s)</span>
+                           <button className={styles.button} onClick={() => this.onButtonClick()}>Say Hello!</button>
+                           <div className={styles.message}>You said hello {this.state.sayHelloCount} time(s)</div>
                        </div>
                    </ContentBody>
                </div>;

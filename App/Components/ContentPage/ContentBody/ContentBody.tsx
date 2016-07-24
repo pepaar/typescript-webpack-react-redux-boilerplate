@@ -14,7 +14,7 @@ export default class ContentBody extends BaseComponent<IContentBodyProps, {}> {
     doRender(): React.ReactElement<{}> {
         return  <div className={styles.container}>
                     <div className={styles.title}>{this.props.title}</div>
-                    <span className={styles.summaryTitle}>Summary:</span>
+                    <div className={styles.summaryTitle}>Summary</div>
                     <div ref="summaryRef" className={styles.summary}>{this.props.summary}</div>
                     {this.props.children}
                 </div>;

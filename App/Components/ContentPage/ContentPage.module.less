@@ -7,5 +7,27 @@
 .hello {
     margin-top: 40px;
     font-size: 20px;
-    color: @primary-red;
+    color: @green-foreground-color;
+    text-align: center;
+}
+
+.button {
+    outline: none;
+    border: 0;
+    padding: 10px 10px;
+    background-color: @green-foreground-color;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    width: 250px;
+
+    &:hover {
+        background-color: @green-background-color;
+        color: @green-foreground-color;
+    }
+}
+
+.message {
+    margin-top: 10px;
+    font-weight: bold;
 }
