@@ -14,5 +14,5 @@ export function loadApp(): void {
 }
 
 export function sayHello(): void {
-        Dispatcher.dispatch(new SayHelloAction());
+    Dispatcher.dispatch(new SayHelloAction());
 }

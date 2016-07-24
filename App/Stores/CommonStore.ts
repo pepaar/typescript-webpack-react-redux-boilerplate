@@ -1,6 +1,4 @@
 import BaseStore from "./BaseStore";
-import IAction from "./../Actions/IAction";
-import Dispatcher from "../Dispatcher/Dispatcher";
 import AppLoadedAction from "../Actions/AppLoadedAction";
 import SayHelloAction from "../Actions/SayHelloAction";
 
@@ -11,7 +9,9 @@ class CommonStore extends BaseStore {
 
     constructor() {
         super();
-        Dispatcher.register((action: IAction) => this.processActions(action));
+
+        this.addActionCallback(AppLoadedAction, this.onAppLoaded);
+        this.addActionCallback(SayHelloAction, this.onSayHello);
     }
 
     getBodyTitle(): string {
@@ -20,28 +20,24 @@ class CommonStore extends BaseStore {
         }
 
         return "";
-    };
+    }
 
     getBodySummary(): string {
         return this.bodySummary;
-    };
+    }
 
     getSayHelloCount(): number {
         return this.sayHelloCount;
-    };
+    }
 
-    private processActions(action: IAction): void {
-        if (action instanceof AppLoadedAction)	{
-            this.bodyTitle = action.bodyTitle;
-            this.bodySummary = action.bodySummary;
-            this.emitChange();
+    private onAppLoaded(action: AppLoadedAction): void {
+        this.bodyTitle = action.bodyTitle;
+        this.bodySummary = action.bodySummary;
+    }
 
-        } else if (action instanceof SayHelloAction) {
-            this.sayHelloCount++;
-            this.emitChange();
-
-        }
-    };
+    private onSayHello(): void {
+        this.sayHelloCount++;
+    }
 }
 
 export default new CommonStore();
