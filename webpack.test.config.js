@@ -1,17 +1,16 @@
-/// <reference path="typings/node/node.d.ts"/>
+/// <reference path="node_modules/@types/node/index.d.ts"/>
 
 var path = require("path");
-var WebpackConfig = require("webpack-config");
+var { Config } = require("webpack-config");
 var webpackShared = require("./webpack.shared");
 
-var mainConfig = new WebpackConfig().extend("webpack.config");
-
-webpackShared.removeObjectProperties(mainConfig.resolve.alias, ['react']);
+var mainConfig = new Config().extend("webpack.config");
 
 var config = {
   resolve: {
     extensions: mainConfig.resolve.extensions,
-    alias: mainConfig.resolve.alias
+    alias: mainConfig.resolve.alias,
+    modulesDirectories: mainConfig.resolve.modulesDirectories
   },
   resolveLoader: mainConfig.resolveLoader,
   devtool: 'inline-source-map',

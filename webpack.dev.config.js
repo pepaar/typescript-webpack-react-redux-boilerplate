@@ -1,14 +1,13 @@
+/// <reference path="node_modules/@types/node/index.d.ts"/>
+
 // This config is extented from webpack.config.js. We use it for development with webpack-dev-server and autoreload/refresh
 
 var webpackShared = require("./webpack.shared");
 var webpack = require('webpack');
-var WebpackConfig = require('webpack-config');
+var { Config } = require('webpack-config');
 var path = require("path");
 
-var mainConfig = new WebpackConfig().extend("webpack.config");
-
-// To work with webpack-dev-server
-webpackShared.removeObjectProperties(mainConfig.resolve.alias, ['react']);
+var mainConfig = new Config().extend("webpack.config");
 
 var devConfigExtension = {
   entry: {
