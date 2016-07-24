@@ -2,7 +2,6 @@
 
 // This config is extented from webpack.config.js. We use it for development with webpack-dev-server and autoreload/refresh
 
-var webpackShared = require("./webpack.shared");
 var webpack = require('webpack');
 var { Config } = require('webpack-config');
 var path = require("path");

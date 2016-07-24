@@ -1,11 +1,10 @@
 /// <reference path="node_modules/@types/node/index.d.ts"/>
 
 var path = require("path");
-var webpackShared = require("./webpack.shared");
 var webpack = require('webpack');
 
 var nodeModulesPath = path.join(__dirname, 'node_modules');
-
+var isProduction = process.env.NODE_ENV == "production";
 
 var config = {
   // entry points - each will produce one bundled js file and one css file if there is any css in dependency tree
@@ -78,7 +77,7 @@ var config = {
   },
 };
 
-if (webpackShared.isProduction) {
+if (isProduction) {
   config.plugins.push(new webpack.optimize.UglifyJsPlugin({
      compress: {
         warnings: false
