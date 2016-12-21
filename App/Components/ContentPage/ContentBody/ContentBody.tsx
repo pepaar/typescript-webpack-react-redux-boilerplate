@@ -16,7 +16,7 @@ export default class ContentBody extends BaseComponent<IContentBodyProps, {}> {
                     <div className={styles.title}>{this.props.title}</div>
                     <div className={styles.summaryTitle}>Summary</div>
                     <div ref="summaryRef" className={styles.summary}>{this.props.summary}</div>
-                    <img src={require("headerlogo.png")} alt="logo" className={styles.logo} />
+                    <img src={require<string>("headerlogo.png")} alt="logo" className={styles.logo} />
                     {this.props.children}
                 </div>;
     }
