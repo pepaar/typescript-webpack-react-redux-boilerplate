@@ -30,6 +30,7 @@
     "babel-preset-es2015-loose": "~8.0.0",
     "css-loader": "~0.28.0",
     "file-loader": "~0.11.1",
+    "html-webpack-plugin": "~2.28.0",
     "less": "~2.7.2",
     "less-loader": "~4.0.3",
     "node-libs-browser": "~2.0.0",
