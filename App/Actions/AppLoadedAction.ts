@@ -8,7 +8,7 @@ export default class AppLoadedAction implements IAction {
         return new ActionLogEntry(
             "AppLoadedAction",
             {
-                "bodyTitle": this.bodyTitle
+                bodyTitle: this.bodyTitle,
             });
     }
 }

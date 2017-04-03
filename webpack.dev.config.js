@@ -29,6 +29,13 @@ var devConfigExtension = {
     rules: [
       {
         test: /\.tsx?$/,
+        enforce: 'pre',
+        loader: 'tslint-loader',
+        options: { emitErrors: true },
+        include: path.join(__dirname, "App")
+      },
+      {
+        test: /\.tsx?$/,
         loaders: ["react-hot-loader", "babel-loader?cacheDirectory", "awesome-typescript-loader?tsconfig=tsconfig.webpack.json&useCache=true"]
       },
       {

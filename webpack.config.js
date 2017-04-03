@@ -32,6 +32,12 @@ var config = {
     rules: [
       {
         test: /\.tsx?$/,
+        enforce: 'pre',
+        loader: 'tslint-loader',
+        options: { emitErrors: true }
+      },
+      {
+        test: /\.tsx?$/,
         loaders: ["babel-loader?cacheDirectory", "awesome-typescript-loader?tsconfig=tsconfig.webpack.json&useCache=true"]
       },
       {

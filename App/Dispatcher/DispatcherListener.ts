@@ -27,7 +27,7 @@ abstract class DispatcherListener {
 
     /** Adds an action callback for a specific action. */
     addActionCallback<T extends IAction>(action: IConstructorOf<T>, callback: ((action: T) => void)): void {
-        this.actionMap.push({action: action, callback: callback.bind(this)});
+        this.actionMap.push({action, callback: callback.bind(this)});
     }
 
     /** Adds an action callback for a actions defined as eval funtion. */
