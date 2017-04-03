@@ -1,41 +1,27 @@
-/// <reference path="node_modules/@types/node/index.d.ts"/>
-
 var path = require("path");
-var webpack = require('webpack');
+var webpack = require("webpack");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 var nodeModulesPath = path.join(__dirname, 'node_modules');
 var isProduction = process.env.NODE_ENV == "production";
 
 var config = {
-  // entry points - each will produce one bundled js file and one css file if there is any css in dependency tree
   entry: {
     vendors: [
       'flux',
       'react',
       'react-dom',
       'babel-polyfill',
-       path.join(__dirname, 'babel', 'babelhelpers.js'),
-       path.join(__dirname, 'babel', 'babelOldIE.js'),
+       path.join(__dirname, 'babel', 'babelhelpers.js')
     ],
     app: [
       path.join(__dirname, 'App', 'Index.tsx')
     ]
   },
 
-  // This is path to loaders
-  resolveLoader: {
-    root: nodeModulesPath
-  },
-
   resolve: {
-    extensions: ['', '.tsx', '.ts', '.js', '.less', '.css'],
-    modulesDirectories: ["node_modules", "resources"],
-    alias: {
-       'react$': path.join(nodeModulesPath, 'react', 'react.js'),
-       'react-dom': path.join(nodeModulesPath, 'react-dom', 'index.js'),
-       'flux': path.join(nodeModulesPath, 'flux', 'index.js'),
-       'babel-polyfill': path.join(nodeModulesPath, 'babel-polyfill', 'lib', 'index.js'),
-    }
+    extensions: ['.tsx', '.ts', '.js', '.less', '.css'],
+    modules: ["node_modules", "resources"],
   },
 
   output: {
@@ -44,37 +30,43 @@ var config = {
   },
 
   module: {
-    preLoaders: [
-      { test: /\.tsx?$/, loader: "tslint", include: path.resolve(__dirname, "App") },
-    ],
-    noParse: [],
-    loaders: [
-      // TODO remove crazy require when https://github.com/babel/babel-loader/issues/166 is fixed.
+    rules: [
       {
         test: /\.tsx?$/,
-        loader: 'babel?cacheDirectory,plugins[]=' + require.resolve(path.join(nodeModulesPath, 'babel-plugin-external-helpers-2')) +
-                ',presets[]=' + require.resolve(path.join(nodeModulesPath, 'babel-preset-es2015-loose')) +
-                '!ts-loader?configFileName=tsconfig.webpack.json',
-        include: path.resolve(__dirname, "App")
+        enforce: 'pre',
+        loader: 'tslint-loader',
+        options: { emitErrors: true }
       },
-      { test: /\.css$/,  loader: "style-loader!css-loader?minimize", include: path.resolve(__dirname, "App") },
-      { test: /\.less$/, exclude: /\.module\.less$/, loader: "style-loader!css-loader?minimize!less-loader?compress", include: path.resolve(__dirname, "App") },
-      { test: /\.module\.less$/,
-        loader: "style-loader!css-loader?minimize&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!less-loader?-compress",
-        include: path.resolve(__dirname, "App") },
-      { test: /\.(jpg|png|woff|eot|ttf|svg|gif)$/, loader: "file-loader?name=[name]_[hash].[ext]", include: path.resolve(__dirname, "App") }
+      {
+        test: /\.tsx?$/,
+        loaders: ["babel-loader?cacheDirectory", "awesome-typescript-loader?tsconfig=tsconfig.webpack.json&useCache=true"]
+      },
+      {
+        test: /\.css$/,
+        loaders: ["style-loader", "css-loader?minimize"]
+      },
+      {
+        test: /\.less$/,
+        exclude: /\.module\.less$/,
+        loaders: ["style-loader", "css-loader?minimize", "less-loader?compress"]
+      },
+      {
+        test: /\.module\.less$/,
+        loaders: ["style-loader", "css-loader?minimize&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]", "less-loader?-compress"]
+      },
+      {
+        test: /\.(jpg|png|woff|eot|ttf|svg|gif)$/,
+        loader: "file-loader?name=[name]_[hash].[ext]"
+      }
     ]
   },
 
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors_[chunkhash].js')
-  ],
-
-  tslint: {
-    // Rules are in tslint.json
-    emitErrors: true, // false = WARNING for webpack, true = ERROR for webpack
-    formattersDirectory: path.join(nodeModulesPath, 'tslint-loader', 'formatters')
-  },
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendors', filename: 'vendors_[hash].js' }),
+    new HtmlWebpackPlugin({
+      template: 'index.html'
+    })
+  ]
 };
 
 if (isProduction) {

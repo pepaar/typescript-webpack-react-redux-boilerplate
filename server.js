@@ -1,5 +1,3 @@
-/// <reference path="node_modules/@types/node/index.d.ts"/>
-
 var path = require('path');
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');

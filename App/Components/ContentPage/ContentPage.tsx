@@ -38,7 +38,7 @@ export default class ContentPage extends SmartComponent<{}, IContentPageState> {
         return {
             bodyTitle: CommonStore.getBodyTitle(),
             bodySummary: CommonStore.getBodySummary(),
-            sayHelloCount: CommonStore.getSayHelloCount()
+            sayHelloCount: CommonStore.getSayHelloCount(),
         };
     }
 

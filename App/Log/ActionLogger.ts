@@ -12,12 +12,13 @@ class ActionLogger {
 
     private processActions: (action: IAction) => void = (action: IAction) => {
         this.log(action);
-    };
+    }
 
     private log(action: IAction): void {
         let logEntry: ActionLogEntry = action.toLogEntry();
 
         if (logEntry != null) {
+            // tslint:disable-next-line:no-console
             console.log(`ActionLogger: ${logEntry.toString()}`);
 
         }
