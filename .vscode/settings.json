@@ -8,7 +8,8 @@
 		"**/.git": true,
 		"**/.DS_Store": true,
         "node_modules/**": true,
-        "build/**": true
+        "build/**": true,
+        ".awcache/**": true
 	},
 
     // When enabled, will trim trailing whitespace when you save a file.
