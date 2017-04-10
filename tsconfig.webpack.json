@@ -4,7 +4,11 @@
         "sourceMap": true,
         "jsx": "react",
         "moduleResolution": "node",
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+
+        "typeRoots": [
+            "Models"
+        ]
     },
     "files": [
     ]
