@@ -1,48 +1,57 @@
 import * as React from "react";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
 import ContentHeader from "./ContentHeader/ContentHeader";
 import ContentBody from "./ContentBody/ContentBody";
-import CommonStore from "../../Stores/CommonStore";
-import  * as CommonActionCreators from "../../ActionCreators/CommonActionCreators";
-import SmartComponent from "./../SmartComponent";
+import { sayHello } from "./../../ActionCreators/HelloCountActionCreators";
+import BaseComponent from "./../BaseComponent";
+import { IStore } from "./../../Store/Base/IStore";
 
-/* tslint:disable:no-any */
+// tslint:disable-next-line:no-any
 const styles: any = require("./ContentPage.module.less");
-/* tslint:enable:no-any */
 
-interface IContentPageState {
-   bodyTitle: string;
-   bodySummary: string;
-   sayHelloCount: number;
+interface IContentPageProps {
+   bodyTitle?: string;
+   bodySummary?: string;
+   sayHelloCount?: number;
+   sayHello?: () => void;
 }
 
-export default class ContentPage extends SmartComponent<{}, IContentPageState> {
-    constructor() {
-        super(CommonStore);
-    }
-
+class ContentPage extends BaseComponent<IContentPageProps, {}> {
     doRender(): React.ReactElement<{}> {
         const headerTitle: string = "Welcome to Lorem Ipsum";
 
         return <div className={styles.container}>
                    <ContentHeader isActive={true} title={headerTitle} />
-                   <ContentBody ref="contentBodyRef" title={this.state.bodyTitle} summary={this.state.bodySummary}>
+                   <ContentBody ref="contentBodyRef" title={this.props.bodyTitle} summary={this.props.bodySummary}>
                        <div className={styles.hello}>
                            <button className={styles.button} onClick={() => this.onButtonClick()}>Say Hello!</button>
-                           <div className={styles.message}>You said hello {this.state.sayHelloCount} time(s)</div>
+                           <div className={styles.message}>You said hello {this.props.sayHelloCount} time(s)</div>
                        </div>
                    </ContentBody>
                </div>;
     }
 
-    protected getState(): IContentPageState {
-        return {
-            bodyTitle: CommonStore.getBodyTitle(),
-            bodySummary: CommonStore.getBodySummary(),
-            sayHelloCount: CommonStore.getSayHelloCount(),
-        };
-    }
-
     private onButtonClick(): void {
-        CommonActionCreators.sayHello();
+        this.props.sayHello();
     }
 }
+
+function mapStateToProps(state: IStore): IContentPageProps {
+    return {
+        bodyTitle: state.content.title,
+        bodySummary: state.content.summary,
+        sayHelloCount: state.helloCount.count,
+    };
+}
+
+function mapDispatchToProps(dispatch: Dispatch<{}>): IContentPageProps {
+  return {
+    sayHello: () => dispatch(sayHello()),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ContentPage);

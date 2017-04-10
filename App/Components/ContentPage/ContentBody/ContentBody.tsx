@@ -1,9 +1,8 @@
 import * as React from "react";
 import BaseComponent from "./../../BaseComponent";
 
-/* tslint:disable:no-any */
+// tslint:disable-next-line:no-any
 const styles: any = require("./ContentBody.module.less");
-/* tslint:enable:no-any */
 
 interface IContentBodyProps extends React.Props<{}> {
     title: string;

@@ -60,6 +60,9 @@ var devConfigExtension = {
    plugins: [
     // Used for hot-reload
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      DEBUG: true
+    })
   ]
 };
 
