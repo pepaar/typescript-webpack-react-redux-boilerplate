@@ -2,7 +2,7 @@ import { Dispatch } from "redux";
 import * as GetPostsActions from "../Actions/GetPostsActions";
 import * as PostsProvider from "./../DataLayer/PostsProvider";
 
-export function fetchPosts(subreddit: string): (dispatcher) => Promise<{}> {
+export function fetchPosts(subreddit: string): (dispatcher: Dispatch<{}>) => Promise<{}> {
     return (dispatch: Dispatch<{}>) => {
         dispatch(GetPostsActions.createStart(subreddit));
 

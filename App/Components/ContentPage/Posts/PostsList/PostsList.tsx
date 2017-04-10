@@ -15,7 +15,10 @@ export default class PostsList extends BaseComponent<IPostsListProps, {}> {
         }
 
         const posts = this.props.posts.slice(0, 5).map((post, index) => {
-            return <div key={post.id} className={styles.post}>{index + 1}.) {post.title}</div>;
+            return (<div key={post.id} className={styles.post}>
+                        <a href={post.url} target="blank">{index + 1}.) {post.title}</a>
+                        <span> |&#9652;{post.ups}</span><span>&#9662;{post.downs}</span>
+                    </div>);
         });
 
         return <div className={styles.container}>{posts}</div>;
