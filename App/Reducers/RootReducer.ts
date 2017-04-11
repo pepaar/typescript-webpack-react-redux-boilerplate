@@ -1,13 +1,13 @@
 import { combineReducers, Reducer } from "redux";
 import { helloCountReducer } from "./HelloCountReducer";
 import { contentReducer } from "./ContentReducer";
-import { postsReducer } from "./PostsReducer";
-import { IStore } from "./../Store/Base/IStore";
+import { subredditsReducer } from "./SubredditsReducer";
+import { StoreState } from "./../Store/StoreState";
 
-const rootReducer: Reducer<IStore> = combineReducers<IStore>({
-  helloCount: helloCountReducer,
-  content: contentReducer,
-  posts: postsReducer,
+const rootReducer: Reducer<StoreState> = combineReducers<StoreState>({
+    helloCount: helloCountReducer,
+    content: contentReducer,
+    subreddits: subredditsReducer,
 });
 
 export default rootReducer;

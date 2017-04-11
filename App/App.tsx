@@ -4,19 +4,20 @@ import { Dispatch } from "redux";
 import ContentPage from "./Components/ContentPage/ContentPage";
 import BaseComponent from "./Components/BaseComponent";
 import { loadContent } from "./ActionCreators/ContentActionCreators";
-import { IStore } from "./Store/Base/IStore";
+import { StoreState } from "./Store/StoreState";
 
 require("./Global/Styles/global.less");
 
 interface IAppProps {
-  loadContent?: () => void;
+    loadContent?: () => void;
 }
 
+@connect(undefined, mapDispatchToProps)
 class App extends BaseComponent<IAppProps, {}> {
     doRender(): React.ReactElement<{}> {
-        return  <div>
+        return (<div>
                     <ContentPage />
-                </div>;
+                </div>);
     }
 
     componentDidMount(): void {
@@ -25,12 +26,9 @@ class App extends BaseComponent<IAppProps, {}> {
 };
 
 function mapDispatchToProps(dispatch: Dispatch<{}>): IAppProps {
-  return {
-    loadContent: () => dispatch(loadContent()),
-  };
+    return {
+        loadContent: () => dispatch(loadContent()),
+    };
 }
 
-export default connect(
-  undefined,
-  mapDispatchToProps,
-)(App);
+export default App;

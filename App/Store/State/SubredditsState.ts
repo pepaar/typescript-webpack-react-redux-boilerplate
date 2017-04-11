@@ -1,4 +1,4 @@
-export interface PostsStore {
+export interface SubredditsState {
     selectedSubreddit: string;
     items: {[subreddit: string]: Subreddit};
 }

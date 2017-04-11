@@ -13,44 +13,12 @@
     align-self: center;
 }
 
-.button {
-    outline: none;
-    border: 0;
-    padding: 10px 10px;
-    background-color: @green-foreground-color;
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
-    width: 250px;
-
-    &:hover {
-        background-color: @green-background-color;
-        color: @green-foreground-color;
-    }
-}
-
 .message {
     margin-top: 10px;
     font-weight: bold;
 }
 
-.chooseSubreddit {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.posts {
+.subreddits {
     display: flex;
     flex-direction: column;
-}
-
-.subredditButton {
-    composes: button;
-    width: auto;
-    flex-grow: 1;
-    margin: 10px;
-}
-
-.subredditButtons {
-    display: flex;
 }

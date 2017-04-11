@@ -1,12 +1,10 @@
 import { ContentLoadAction, create } from "../Actions/ContentLoadAction";
 
 export function loadContent(): ContentLoadAction {
-    const title: string = "The standard Lorem Ipsum passage, used since the 1500s";
-    const summary: string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor" +
-        "incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco" +
-        "laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate" +
-        "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt" +
-        "in culpa qui officia deserunt mollit anim id est laborum.";
+    const title: string = "Typescript-Webpack-React-Flux/Redux boilerplate";
+    const summary: string = "The goal of this example is to help you start when combining Typescript with React and Redux. " +
+        "LESS in combination of CSS modules is used for styling components. For running, building and bundling there is powerful Webpack. " +
+        "Check the console logs as you click around the page and install redux devtools chrome extenstion for better development experience.";
 
     return create(title, summary);
 }

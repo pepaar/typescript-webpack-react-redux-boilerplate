@@ -8,9 +8,12 @@ var isProduction = process.env.NODE_ENV == "production";
 var config = {
   entry: {
     vendors: [
-      'flux',
       'react',
       'react-dom',
+      'redux',
+      'react-redux',
+      'redux-thunk',
+      'redux-logger',
       'babel-polyfill',
        path.join(__dirname, 'babel', 'babelhelpers.js')
     ],

@@ -1,16 +1,16 @@
-import * as GetPostsActions from "./../Actions/GetPostsActions";
-import { PostsStore } from "./../Store/PostsStore";
+import * as GetSubredditPostsActions from "./../Actions/GetSubredditPostsActions";
+import { SubredditsState } from "./../Store/State/SubredditsState";
 import IAction from "./../Actions/IAction";
 
-const initialState: PostsStore = {
+const initialState: SubredditsState = {
     items: {},
     selectedSubreddit: undefined,
 };
 
-export function postsReducer(state = initialState, action: IAction): PostsStore {
+export function subredditsReducer(state = initialState, action: IAction): SubredditsState {
     switch (action.type) {
-        case GetPostsActions.typeStart:
-            const startAction = action as GetPostsActions.GetPostsStartAction;
+        case GetSubredditPostsActions.typeStart:
+            const startAction = action as GetSubredditPostsActions.GetSubredditPostsStartAction;
 
             return {
                 selectedSubreddit: startAction.subreddit,
@@ -25,8 +25,8 @@ export function postsReducer(state = initialState, action: IAction): PostsStore 
                 },
             };
 
-        case GetPostsActions.typeSuccess:
-            const successAction = action as GetPostsActions.GetPostsSuccessAction;
+        case GetSubredditPostsActions.typeSuccess:
+            const successAction = action as GetSubredditPostsActions.GetSubredditPostsSuccessAction;
 
             const updatedItem = Object.assign({}, state.items[successAction.subreddit], {
                 isLoading: false,
@@ -41,8 +41,8 @@ export function postsReducer(state = initialState, action: IAction): PostsStore 
                 },
             };
 
-        case GetPostsActions.typeError:
-            const errorAction = action as GetPostsActions.GetPostsErrorAction;
+        case GetSubredditPostsActions.typeError:
+            const errorAction = action as GetSubredditPostsActions.GetSubredditPostsErrorAction;
 
             const errorItem = Object.assign({}, state.items[errorAction.subreddit], {
                 isLoading: false,

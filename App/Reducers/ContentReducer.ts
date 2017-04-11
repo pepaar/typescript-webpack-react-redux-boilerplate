@@ -1,20 +1,20 @@
 import { ContentLoadAction, type as ContentLoadActionType } from "./../Actions/ContentLoadAction";
-import { ContentStore } from "./../Store/ContentStore";
+import { ContentState } from "./../Store/State/ContentState";
 
-const initialState: ContentStore = {
+const initialState: ContentState = {
     title: "",
     summary: "",
 };
 
-export function contentReducer(state = initialState, action: ContentLoadAction): ContentStore {
-  switch (action.type) {
-    case ContentLoadActionType:
-      return {
-        title: action.title ? action.title.toUpperCase() : "",
-        summary: action.summary,
-      };
+export function contentReducer(state = initialState, action: ContentLoadAction): ContentState {
+    switch (action.type) {
+        case ContentLoadActionType:
+            return {
+              title: action.title ? action.title.toUpperCase() : "",
+              summary: action.summary,
+            };
 
-    default:
-      return state;
-  }
+        default:
+            return state;
+    }
 }
