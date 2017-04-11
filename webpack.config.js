@@ -8,9 +8,12 @@ var isProduction = process.env.NODE_ENV == "production";
 var config = {
   entry: {
     vendors: [
-      'flux',
       'react',
       'react-dom',
+      'redux',
+      'react-redux',
+      'redux-thunk',
+      'redux-logger',
       'babel-polyfill',
        path.join(__dirname, 'babel', 'babelhelpers.js')
     ],
@@ -65,6 +68,9 @@ var config = {
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendors', filename: 'vendors_[hash].js' }),
     new HtmlWebpackPlugin({
       template: 'index.html'
+    }),
+    new webpack.DefinePlugin({
+      DEBUG: true
     })
   ]
 };
@@ -76,7 +82,8 @@ if (isProduction) {
     }
   }));
   config.plugins.push(new webpack.DefinePlugin({
-    'process.env': {NODE_ENV: '"production"'}
+    'process.env': {NODE_ENV: '"production"'},
+    DEBUG: false
   }));
 }
 

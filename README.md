@@ -1,13 +1,12 @@
 # typescript-webpack-react-flux-boilerplate
-The goal of this repo is to help you start when combining React and Typescript.
-It contains implementation of simple example based on flux pattern.
+The goal of this repo is to help you start when combining Typescript with React and Redux.
 LESS in combination of CSS modules is used for styling components. For running, building and bundling there is powerful Webpack.
 
 ## This boilerplate combines
 * [Typescript 2](https://github.com/Microsoft/TypeScript)
 * [Babel](https://babeljs.io/)
 * [React](https://github.com/facebook/react)
-* [Flux](https://github.com/facebook/flux)
+* [Redux](https://github.com/reactjs/redux)
 * [LESS](https://github.com/less/less.js)
 * [CSS modules](https://github.com/css-modules/css-modules)
 * [Webpack 2](https://webpack.js.org/)

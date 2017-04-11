@@ -1,48 +1,63 @@
 import * as React from "react";
-import ContentHeader from "./ContentHeader/ContentHeader";
-import ContentBody from "./ContentBody/ContentBody";
-import CommonStore from "../../Stores/CommonStore";
-import  * as CommonActionCreators from "../../ActionCreators/CommonActionCreators";
-import SmartComponent from "./../SmartComponent";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import { sayHello } from "./../../ActionCreators/HelloCountActionCreators";
+import { fetchPosts } from "./../../ActionCreators/SubredditsActionCreators";
+import { StoreState } from "./../../Store/StoreState";
+import BaseComponent from "./../BaseComponent";
+import Button from "./../Common/Button/Button";
+import Header from "./Header/Header";
+import BodyWrapper from "./BodyWrapper/BodyWrapper";
+import SubredditChooser from "./SubredditChooser/SubredditChooser";
+import Posts from "./Posts/Posts";
 
-/* tslint:disable:no-any */
+// tslint:disable-next-line:no-any
 const styles: any = require("./ContentPage.module.less");
-/* tslint:enable:no-any */
 
-interface IContentPageState {
-   bodyTitle: string;
-   bodySummary: string;
-   sayHelloCount: number;
+interface IContentPageProps {
+   bodyTitle?: string;
+   bodySummary?: string;
+   sayHelloCount?: number;
+   selectedSubreddit?: Subreddit;
+
+   sayHello?: () => void;
+   fetchSubreddit?: (subreddit: string) => void;
 }
 
-export default class ContentPage extends SmartComponent<{}, IContentPageState> {
-    constructor() {
-        super(CommonStore);
-    }
-
+@connect(mapStateToProps, mapDispatchToProps)
+class ContentPage extends BaseComponent<IContentPageProps, {}> {
     doRender(): React.ReactElement<{}> {
-        const headerTitle: string = "Welcome to Lorem Ipsum";
-
-        return <div className={styles.container}>
-                   <ContentHeader isActive={true} title={headerTitle} />
-                   <ContentBody ref="contentBodyRef" title={this.state.bodyTitle} summary={this.state.bodySummary}>
-                       <div className={styles.hello}>
-                           <button className={styles.button} onClick={() => this.onButtonClick()}>Say Hello!</button>
-                           <div className={styles.message}>You said hello {this.state.sayHelloCount} time(s)</div>
-                       </div>
-                   </ContentBody>
-               </div>;
-    }
-
-    protected getState(): IContentPageState {
-        return {
-            bodyTitle: CommonStore.getBodyTitle(),
-            bodySummary: CommonStore.getBodySummary(),
-            sayHelloCount: CommonStore.getSayHelloCount(),
-        };
-    }
-
-    private onButtonClick(): void {
-        CommonActionCreators.sayHello();
+        return (<div className={styles.container}>
+                    <Header isActive={true} title={"Welcome to test page"} />
+                    <BodyWrapper ref="contentBodyRef" title={this.props.bodyTitle} summary={this.props.bodySummary}>
+                        <div className={styles.hello}>
+                            <Button onClick={() => this.props.sayHello()}>Say Hello!</Button>
+                            <div className={styles.message}>You said hello {this.props.sayHelloCount} time(s)</div>
+                        </div>
+                        <br />
+                        <div className={styles.subreddits}>
+                            <SubredditChooser fetchSubreddit={this.props.fetchSubreddit} />
+                            <Posts subreddit={this.props.selectedSubreddit} />
+                        </div>
+                    </BodyWrapper>
+                </div>);
     }
 }
+
+function mapStateToProps(state: StoreState): IContentPageProps {
+    return {
+        bodyTitle: state.content.title,
+        bodySummary: state.content.summary,
+        sayHelloCount: state.helloCount.count,
+        selectedSubreddit: state.subreddits.items[state.subreddits.selectedSubreddit],
+    };
+}
+
+function mapDispatchToProps(dispatch: Dispatch<{}>): IContentPageProps {
+    return {
+        sayHello: () => dispatch(sayHello()),
+        fetchSubreddit: (subreddit: string) => dispatch(fetchPosts(subreddit)),
+    };
+}
+
+export default ContentPage;

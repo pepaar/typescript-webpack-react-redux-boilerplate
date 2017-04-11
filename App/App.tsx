@@ -1,18 +1,34 @@
 import * as React from "react";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
 import ContentPage from "./Components/ContentPage/ContentPage";
-import * as CommonActionCreators from "./ActionCreators/CommonActionCreators";
 import BaseComponent from "./Components/BaseComponent";
-require("./Log/ActionLogger");
+import { loadContent } from "./ActionCreators/ContentActionCreators";
+import { StoreState } from "./Store/StoreState";
+
 require("./Global/Styles/global.less");
 
-export default class App extends BaseComponent<{}, {}> {
+interface IAppProps {
+    loadContent?: () => void;
+}
+
+@connect(undefined, mapDispatchToProps)
+class App extends BaseComponent<IAppProps, {}> {
     doRender(): React.ReactElement<{}> {
-        return  <div>
+        return (<div>
                     <ContentPage />
-                </div>;
+                </div>);
     }
 
     componentDidMount(): void {
-        CommonActionCreators.loadApp();
+        this.props.loadContent();
     }
 };
+
+function mapDispatchToProps(dispatch: Dispatch<{}>): IAppProps {
+    return {
+        loadContent: () => dispatch(loadContent()),
+    };
+}
+
+export default App;

@@ -1,0 +1,26 @@
+@import (reference) "../../../../Global/Styles/variables.less";
+
+.container {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.post {
+    padding: 10px 0;
+    color: @green-foreground-color;
+
+    > a {
+        text-decoration: none;
+        color: @green-foreground-color;
+    }
+
+    &:hover {
+        background-color: @green-background-color;
+    }
+
+    &:nth-of-type(even) {
+        align-self: flex-end;
+    }
+}

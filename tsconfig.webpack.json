@@ -2,7 +2,13 @@
     "compilerOptions": {
         "target": "es6",
         "sourceMap": true,
-        "jsx": "react"
+        "jsx": "react",
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+
+        "typeRoots": [
+            "Models"
+        ]
     },
     "files": [
     ]
