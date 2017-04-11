@@ -68,6 +68,9 @@ var config = {
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendors', filename: 'vendors_[hash].js' }),
     new HtmlWebpackPlugin({
       template: 'index.html'
+    }),
+    new webpack.DefinePlugin({
+      DEBUG: true
     })
   ]
 };

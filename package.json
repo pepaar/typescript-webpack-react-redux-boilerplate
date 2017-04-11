@@ -15,7 +15,6 @@
     "@types/react-dom": "~0.14.23",
     "@types/react-redux": "~4.4.38",
     "@types/redux-logger": "~3.0.0",
-    "@types/redux-thunk": "~2.1.0",
     "react": "~15.4.2",
     "react-dom": "~15.4.2",
     "react-redux": "~5.0.4",
@@ -25,7 +24,6 @@
   },
   "devDependencies": {
     "awesome-typescript-loader": "~3.1.2",
-    "babel": "~6.23.0",
     "babel-cli": "^6.24.0",
     "babel-core": "~6.24.0",
     "babel-loader": "~6.4.1",
