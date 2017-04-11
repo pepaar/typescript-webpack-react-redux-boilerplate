@@ -1,4 +1,4 @@
-# typescript-webpack-react-flux-boilerplate
+# typescript-webpack-react-redux-boilerplate
 The goal of this repo is to help you start when combining Typescript with React and Redux.
 LESS in combination of CSS modules is used for styling components. For running, building and bundling there is powerful Webpack.
 
