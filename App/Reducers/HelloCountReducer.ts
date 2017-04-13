@@ -1,18 +1,15 @@
-import { SayHelloAction, type as SayHelloActionType } from "./../Actions/SayHelloAction";
+import { handleActions } from "redux-actions";
+import { sayHelloAction, SAY_HELLO_ACTION } from "./../Actions/SayHelloAction";
 import { HelloCountState } from "./../Store/State/HelloCountState";
 
 const initialState: HelloCountState = {
     count: 0,
 };
 
-export function helloCountReducer(state = initialState, action: SayHelloAction): HelloCountState {
-    switch (action.type) {
-        case SayHelloActionType:
-            return {
-              count: state.count + 1,
-            };
-
-        default:
-            return state;
-    }
-}
+export default handleActions<HelloCountState, void>({
+    [SAY_HELLO_ACTION]: (state, action) => {
+        return {
+            count: state.count + 1,
+        };
+    },
+}, initialState);

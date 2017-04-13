@@ -1,15 +1,10 @@
-import IAction from "./IAction";
-export const type = "ContentLoadAction";
+import { createAction } from "redux-actions";
 
-export interface ContentLoadAction extends IAction {
+export const CONTENT_LOAD_ACTION = "ContentLoadAction";
+
+export interface ContentLoadActionPayload  {
     title: string;
     summary: string;
 }
 
-export function create(title: string, summary: string): ContentLoadAction {
-    return {
-        title,
-        summary,
-        type,
-    };
-}
+export const contentLoadAction = createAction<ContentLoadActionPayload, ContentLoadActionPayload>(CONTENT_LOAD_ACTION, undefined);

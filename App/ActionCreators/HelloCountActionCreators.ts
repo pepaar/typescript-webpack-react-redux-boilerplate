@@ -1,5 +1,6 @@
-import { SayHelloAction, create } from "../Actions/SayHelloAction";
+import { sayHelloAction } from "../Actions/SayHelloAction";
 
-export function sayHello(): SayHelloAction {
-    return create();
+export function sayHello(): ReduxActions.Action<void> {
+    // Put your business logic here
+    return sayHelloAction();
 }

@@ -1,3 +1,3 @@
 export interface HelloCountState {
-    count: number;
+    readonly count: number;
 }
