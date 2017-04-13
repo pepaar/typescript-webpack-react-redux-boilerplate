@@ -1,4 +1,4 @@
 export interface ContentState {
-    title: string;
-    summary: string;
+    readonly title: string;
+    readonly summary: string;
 }

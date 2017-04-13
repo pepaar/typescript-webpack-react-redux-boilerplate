@@ -3,7 +3,7 @@ import { ContentState } from "./State/ContentState";
 import { SubredditsState } from "./State/SubredditsState";
 
 export interface StoreState {
-    helloCount: HelloCountState;
-    content: ContentState;
-    subreddits: SubredditsState;
+    readonly helloCount: HelloCountState;
+    readonly content: ContentState;
+    readonly subreddits: SubredditsState;
 };

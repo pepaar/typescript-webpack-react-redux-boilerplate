@@ -5,7 +5,7 @@ import BaseComponent from "./../../../BaseComponent";
 const styles: any = require("./PostsList.module.less");
 
 interface IPostsListProps {
-    posts: Post[];
+    posts: ReadonlyArray<Post>;
 };
 
 export default class PostsList extends BaseComponent<IPostsListProps, {}> {

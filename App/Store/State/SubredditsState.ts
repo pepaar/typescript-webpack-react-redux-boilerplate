@@ -1,4 +1,4 @@
 export interface SubredditsState {
-    selectedSubreddit: string;
-    items: {[subreddit: string]: Subreddit};
+    readonly selectedSubreddit: string;
+    readonly items: {[subreddit: string]: Subreddit};
 }

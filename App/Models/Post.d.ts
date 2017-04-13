@@ -1,7 +1,7 @@
 declare interface Post {
-    id: string;
-    title: string;
-    url: string;
-    ups: number;
-    downs: number;
+    readonly id: string;
+    readonly title: string;
+    readonly url: string;
+    readonly ups: number;
+    readonly downs: number;
 }
