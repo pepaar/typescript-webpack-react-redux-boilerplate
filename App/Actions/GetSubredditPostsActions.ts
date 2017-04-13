@@ -1,42 +1,26 @@
-import IAction from "./IAction";
+import { createAction } from "redux-actions";
 
-export const typeStart = "GetSubredditPostsStartAction";
-export const typeSuccess = "GetSubredditPostsSuccessAction";
-export const typeError = "GetSubredditPostsErrorAction";
+export const GET_SUBREDDIT_POSTS_START_ACTION = "GetSubredditPostsStartAction";
+export const GET_SUBREDDIT_POSTS_SUCCESS_ACTION = "GetSubredditPostsSuccessAction";
+export const GET_SUBREDDIT_POSTS_ERROR_ACTION = "GetSubredditPostsErrorAction";
 
-export interface GetSubredditPostsStartAction extends IAction {
+export interface GetSubredditPostsStartActionPayload {
     subreddit: string;
 }
 
-export interface GetSubredditPostsSuccessAction extends IAction {
+export interface GetSubredditPostsSuccessActionPayload {
     subreddit: string;
     posts: Post[];
 }
 
-export interface GetSubredditPostsErrorAction extends IAction {
+export interface GetSubredditPostsErrorActionPayload {
     subreddit: string;
     error: string;
 }
 
-export function createStart(subreddit: string): GetSubredditPostsStartAction {
-    return {
-        type: typeStart,
-        subreddit,
-    };
-}
-
-export function createSuccess(subreddit: string, posts: Post[]): GetSubredditPostsSuccessAction {
-    return {
-        type: typeSuccess,
-        subreddit,
-        posts,
-    };
-}
-
-export function createError(subreddit: string, error: string): GetSubredditPostsErrorAction {
-    return {
-        type: typeError,
-        subreddit,
-        error,
-    };
-}
+export const getSubredditPostsStartAction =
+    createAction<GetSubredditPostsStartActionPayload, GetSubredditPostsStartActionPayload>(GET_SUBREDDIT_POSTS_START_ACTION, undefined);
+export const getSubredditPostsSuccessAction =
+    createAction<GetSubredditPostsSuccessActionPayload, GetSubredditPostsSuccessActionPayload>(GET_SUBREDDIT_POSTS_SUCCESS_ACTION, undefined);
+export const getSubredditPostsErrorAction =
+    createAction<GetSubredditPostsErrorActionPayload, GetSubredditPostsErrorActionPayload>(GET_SUBREDDIT_POSTS_ERROR_ACTION, undefined);

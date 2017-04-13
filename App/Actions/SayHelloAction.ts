@@ -1,10 +1,5 @@
-import IAction from "./IAction";
+import { createAction } from "redux-actions";
 
-export const type = "SayHelloAction";
+export const SAY_HELLO_ACTION = "SayHelloAction";
 
-export interface SayHelloAction extends IAction {
-}
-
-export function create(): SayHelloAction {
-    return { type };
-}
+export const sayHelloAction = createAction<void>(SAY_HELLO_ACTION, undefined);

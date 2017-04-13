@@ -1,63 +1,61 @@
-import * as GetSubredditPostsActions from "./../Actions/GetSubredditPostsActions";
+import { handleActions } from "redux-actions";
+import { GET_SUBREDDIT_POSTS_START_ACTION, GET_SUBREDDIT_POSTS_SUCCESS_ACTION, GET_SUBREDDIT_POSTS_ERROR_ACTION,
+    GetSubredditPostsStartActionPayload, GetSubredditPostsSuccessActionPayload, GetSubredditPostsErrorActionPayload }
+    from "./../Actions/GetSubredditPostsActions";
 import { SubredditsState } from "./../Store/State/SubredditsState";
-import IAction from "./../Actions/IAction";
 
 const initialState: SubredditsState = {
     items: {},
     selectedSubreddit: undefined,
 };
 
-export function subredditsReducer(state = initialState, action: IAction): SubredditsState {
-    switch (action.type) {
-        case GetSubredditPostsActions.typeStart:
-            const startAction = action as GetSubredditPostsActions.GetSubredditPostsStartAction;
-
-            return {
-                selectedSubreddit: startAction.subreddit,
-                items: {
-                    ...state.items,
-                    [startAction.subreddit]: {
-                        name: startAction.subreddit,
-                        isLoading: true,
-                        isError: false,
-                        posts: [],
-                    },
+export default handleActions<SubredditsState>({
+    [GET_SUBREDDIT_POSTS_START_ACTION]: (state, action: ReduxActions.Action<GetSubredditPostsStartActionPayload>) => {
+        return {
+            selectedSubreddit: action.payload.subreddit,
+            items: {
+                ...state.items,
+                [action.payload.subreddit]: {
+                    name: action.payload.subreddit,
+                    isLoading: true,
+                    isError: false,
+                    posts: [],
                 },
-            };
+            },
+        };
+    },
 
-        case GetSubredditPostsActions.typeSuccess:
-            const successAction = action as GetSubredditPostsActions.GetSubredditPostsSuccessAction;
+    [GET_SUBREDDIT_POSTS_SUCCESS_ACTION]: (state, action: ReduxActions.Action<GetSubredditPostsSuccessActionPayload>) => {
+        const updatedItem = {
+            ...state.items[action.payload.subreddit],
+            isLoading: false,
+            posts: action.payload.posts,
+        };
 
-            const updatedItem = Object.assign({}, state.items[successAction.subreddit], {
-                isLoading: false,
-                posts: successAction.posts,
-            });
+        return {
+            ...state,
+            items: {
+                ...state.items,
+                [action.payload.subreddit]: updatedItem,
+            },
+        };
+    },
 
-            return {
-                ...state,
-                items: {
-                    ...state.items,
-                    [successAction.subreddit]: updatedItem,
-                },
-            };
+    [GET_SUBREDDIT_POSTS_ERROR_ACTION]: (state, action: GetSubredditPostsErrorActionPayload) => {
+        const errorItem = {
+            ...state.items[action.subreddit],
+            isLoading: false,
+            isError: true,
+            posts: [],
+        };
 
-        case GetSubredditPostsActions.typeError:
-            const errorAction = action as GetSubredditPostsActions.GetSubredditPostsErrorAction;
+        return {
+            ...state,
+            items: {
+                ...state.items,
+                [action.subreddit]: errorItem,
+            },
+        };
+    },
 
-            const errorItem = Object.assign({}, state.items[errorAction.subreddit], {
-                isLoading: false,
-                isError: true,
-                posts: [],
-            });
-
-            return {
-                ...state,
-                items: {
-                    ...state.items,
-                    [errorAction.subreddit]: errorItem,
-                },
-            };
-        default:
-          return state;
-    }
-}
+}, initialState);
