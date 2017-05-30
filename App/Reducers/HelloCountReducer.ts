@@ -1,5 +1,5 @@
 import { handleActions } from "redux-actions";
-import { sayHelloAction, SAY_HELLO_ACTION } from "./../Actions/SayHelloAction";
+import { sayHelloAction } from "./../Actions/SayHelloAction";
 import { HelloCountState } from "./../Store/State/HelloCountState";
 
 const initialState: HelloCountState = {
@@ -7,7 +7,7 @@ const initialState: HelloCountState = {
 };
 
 export default handleActions<HelloCountState, void>({
-    [SAY_HELLO_ACTION]: (state, action) => {
+    [sayHelloAction.toString()]: (state, action) => {
         return {
             count: state.count + 1,
         };

@@ -1,7 +1,7 @@
 import { handleActions } from "redux-actions";
-import { GET_SUBREDDIT_POSTS_START_ACTION, GET_SUBREDDIT_POSTS_SUCCESS_ACTION, GET_SUBREDDIT_POSTS_ERROR_ACTION,
-    GetSubredditPostsStartActionPayload, GetSubredditPostsSuccessActionPayload, GetSubredditPostsErrorActionPayload }
-    from "./../Actions/GetSubredditPostsActions";
+import { getSubredditPostsStartAction, getSubredditPostsSuccessAction, getSubredditPostsErrorAction,
+    GetSubredditPostsStartActionPayload, GetSubredditPostsSuccessActionPayload,
+    GetSubredditPostsErrorActionPayload } from "./../Actions/GetSubredditPostsActions";
 import { SubredditsState } from "./../Store/State/SubredditsState";
 
 const initialState: SubredditsState = {
@@ -10,7 +10,7 @@ const initialState: SubredditsState = {
 };
 
 export default handleActions<SubredditsState>({
-    [GET_SUBREDDIT_POSTS_START_ACTION]: (state, action: ReduxActions.Action<GetSubredditPostsStartActionPayload>) => {
+    [getSubredditPostsStartAction.toString()]: (state, action: ReduxActions.Action<GetSubredditPostsStartActionPayload>) => {
         return {
             selectedSubreddit: action.payload.subreddit,
             items: {
@@ -25,7 +25,7 @@ export default handleActions<SubredditsState>({
         };
     },
 
-    [GET_SUBREDDIT_POSTS_SUCCESS_ACTION]: (state, action: ReduxActions.Action<GetSubredditPostsSuccessActionPayload>) => {
+    [getSubredditPostsSuccessAction.toString()]: (state, action: ReduxActions.Action<GetSubredditPostsSuccessActionPayload>) => {
         const updatedItem = {
             ...state.items[action.payload.subreddit],
             isLoading: false,
@@ -41,7 +41,7 @@ export default handleActions<SubredditsState>({
         };
     },
 
-    [GET_SUBREDDIT_POSTS_ERROR_ACTION]: (state, action: GetSubredditPostsErrorActionPayload) => {
+    [getSubredditPostsErrorAction.toString()]: (state, action: GetSubredditPostsErrorActionPayload) => {
         const errorItem = {
             ...state.items[action.subreddit],
             isLoading: false,

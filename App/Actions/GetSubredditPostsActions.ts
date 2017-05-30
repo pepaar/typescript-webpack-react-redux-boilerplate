@@ -1,9 +1,5 @@
 import { createAction } from "redux-actions";
 
-export const GET_SUBREDDIT_POSTS_START_ACTION = "GetSubredditPostsStartAction";
-export const GET_SUBREDDIT_POSTS_SUCCESS_ACTION = "GetSubredditPostsSuccessAction";
-export const GET_SUBREDDIT_POSTS_ERROR_ACTION = "GetSubredditPostsErrorAction";
-
 export interface GetSubredditPostsStartActionPayload {
     subreddit: string;
 }
@@ -19,8 +15,10 @@ export interface GetSubredditPostsErrorActionPayload {
 }
 
 export const getSubredditPostsStartAction =
-    createAction<GetSubredditPostsStartActionPayload, GetSubredditPostsStartActionPayload>(GET_SUBREDDIT_POSTS_START_ACTION, undefined);
+    createAction<GetSubredditPostsStartActionPayload, string>("GetSubredditPostsStartAction", (subreddit) => ({subreddit}));
+// an example utilizing payloadCreator
 export const getSubredditPostsSuccessAction =
-    createAction<GetSubredditPostsSuccessActionPayload, GetSubredditPostsSuccessActionPayload>(GET_SUBREDDIT_POSTS_SUCCESS_ACTION, undefined);
+    createAction<GetSubredditPostsSuccessActionPayload, string, Post[]>("GetSubredditPostsSuccessAction", (subreddit, posts) => ({subreddit, posts}));
+// createAction without payloadCreator
 export const getSubredditPostsErrorAction =
-    createAction<GetSubredditPostsErrorActionPayload, GetSubredditPostsErrorActionPayload>(GET_SUBREDDIT_POSTS_ERROR_ACTION, undefined);
+    createAction<GetSubredditPostsErrorActionPayload, GetSubredditPostsErrorActionPayload>("GetSubredditPostsErrorAction", undefined);
