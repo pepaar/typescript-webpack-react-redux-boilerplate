@@ -1,2 +1,9 @@
 language: node_js
-script: npm run build
+node_js:
+  - "7"
+script:
+  - npm run build
+cache:
+  bundler: true
+  directories:
+    - node_modules
