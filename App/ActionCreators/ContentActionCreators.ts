@@ -6,5 +6,5 @@ export function loadContent(): ReduxActions.Action<ContentLoadActionPayload> {
         "LESS in combination of CSS modules is used for styling components. For running, building and bundling there is powerful Webpack. " +
         "Check the console logs as you click around the page and install redux devtools chrome extenstion for better development experience.";
 
-    return contentLoadAction({title, summary});
+    return contentLoadAction(title, summary);
 }
